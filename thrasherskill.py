@@ -25,7 +25,7 @@ from flask_ask import Ask, statement, question
 
 app = Flask(__name__)
 ask = Ask(app, "/")
-my_url = Req('http://www.thrashermagazine.com/articles/videos/', headers={'User-Agent':'Mozilla/5.0'})
+my_url = Req("http://www.thrashermagazine.com/articles/videos/", headers={"User-Agent":"Mozilla/5.0"})
 # open connection, grabbing the page
 uClient = uReq(my_url)
 page_html = uClient.read()
@@ -43,7 +43,10 @@ def get_info():
         yield ". ".join([title, description])
 
 # Still trying to work out adding a standard card that returns the image
-# associated with the info
+# associated with the info. Currently the Thrasher Logo is used in place of
+# the correct thumbnail. The code below pulls images from Thrasher but the
+# image has to be hosted somewhere that fills Amazons requirements. Using
+# AWS S3 to store the Logo for now.
 
 # def get_image():
 #     for images in titles:
@@ -51,7 +54,7 @@ def get_info():
 #         yield image
 
 
-def iterate():
+def next_video():
     return next(the_info)
 
 
@@ -59,28 +62,28 @@ def iterate():
 def launch():
     text="Would you like to hear what videos are playing on thrasher magazine?"
     return question(text) \
-      .simple_card(title='Thrasher Magazine',
+      .simple_card(title="Thrasher Magazine",
                     content=text)
 
 
 @ask.intent("YesIntent")
 def play_next():
-    words = str(iterate()) + "\r\n " + follow_up
+    words = str(next_video()) + "\r\n " + follow_up
     return question(words) \
-      .simple_card(title='Thrasher Magazine',
-                    content=words)
+      .standard_card(title="Thrasher Magazine",
+                    text=words,
+                     small_image_url="https://s3-us-west-1.amazonaws.com/thrasherskill/thrasher-logo.png")
 
 
 @ask.intent("NoIntent")
 def end_session():
     message = "Ok, check back later"
     return statement(message) \
-      .simple_card(title='Thrasher Magazine',
+      .simple_card(title="Thrasher Magazine",
                      content="OK, check back later")
 
 
 the_info = get_info()
-# pic = get_image()
 follow_up = "Would you like to hear what else is playing?"
 
 

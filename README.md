@@ -2,9 +2,8 @@
 Thrasher Magazine Alexa skill
 
 Thrasher Magazine's website is parsed for infomation about the recent video
- uploads. The code is activated by an Amazon Echo, Dot, or Spot. For testing
- purposes you will need to have someway to connect to your developer.amazon.com account such
- as ngrok.
+ uploads. The code is activated by an Amazon Echo, Dot, or Spot. You will need an amazon 
+ developer account to do any testing.
 
  To-Do
  -----

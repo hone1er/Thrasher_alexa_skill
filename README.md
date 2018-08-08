@@ -15,7 +15,6 @@ time it is activated it is back to the top of the list
 echo spot, dot, and Alexa app on phones and tablets to display the image that
 matches the current title and description
 
-3. Text responses for the cards needs to be correctly formatted
 
 
 Info on using Flask-ask can be found here: 
@@ -25,5 +24,6 @@ Info on developing an Alexa Skill found here:
 https://developer.amazon.com/alexa-skills-kit
 
 Feel free to modify the code to work with any website or help work out the problems listed 
-in the To-Do list. Or add to the To-Do list if you find issues
+in the To-Do list. Or add to the To-Do list if you find issues or any features you think would be cool. 
+
 """

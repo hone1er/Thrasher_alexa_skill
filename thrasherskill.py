@@ -6,26 +6,27 @@ Thrasher Magazine's website is parsed for infomation about the recent video
  purposes you will need to have someway to connect to developer.amazon.com such
  as ngrok.
 
- To-Do
- -----
-1. Need the script to reset when the session with the Amazon device ends so next
-time it is activated it is back to the top of the list
+To-do
+----
+1. Script needs to restart after the session with the Amazon device ends or when
+a new session is started.
 
 2. Images need to be added to the "YesIntent" response .standardcard for the
 echo spot, dot, and Alexa app on phones and tablets to display the image that
-matches the current title and description
+matches the current title and description"""
 
-3. Text responses for the cards needs to be correctly formatted"""
+
 
 from urllib.request import Request as Req
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
+import html.parser as parser
 from flask import Flask
 from flask_ask import Ask, statement, question
 
 app = Flask(__name__)
 ask = Ask(app, "/")
-my_url = Req('http://www.thrashermagazine.com/articles/videos/', headers={'User-Agent':'Mozilla/5.0'})
+my_url = Req("http://www.thrashermagazine.com/articles/videos/", headers={"User-Agent":"Mozilla/5.0"})
 # open connection, grabbing the page
 uClient = uReq(my_url)
 page_html = uClient.read()
@@ -38,9 +39,10 @@ titles = page_soup.findAll("div", {"class":"post-thumb-container"})
 
 def get_info():
     for tit, des in zip(titles, descriptions):
-        title = tit.a.img["alt"]
+        titled = tit.a.img["alt"].strip()
+        title = parser.HTMLParser().unescape(titled)
         description = des.text.strip()
-        yield ". ".join([title, description])
+        yield f"{title}. {description}"
 
 # Still trying to work out adding a standard card that returns the image
 # associated with the info
@@ -57,32 +59,32 @@ def iterate():
 
 @ask.launch
 def launch():
-    text="Would you like to hear what videos are playing on thrasher magazine?"
-    return question(text) \
-      .simple_card(title='Thrasher Magazine',
-                    content=text)
+    textd="Would you like to hear what videos are playing on thrasher magazine?"
+    return question(textd) \
+      .standard_card(title="Thrasher Magazine",
+                    text=textd,
+                     small_image_url="https://s3-us-west-1.amazonaws.com/thrasherskill/thrasher-logo.png")
 
 
 @ask.intent("YesIntent")
 def play_next():
-    words = str(iterate()) + "\r\n " + follow_up
+    words = f"{iterate()} \r\n {follow_up}"
     return question(words) \
-      .simple_card(title='Thrasher Magazine',
-                    content=words)
+      .standard_card(title="Thrasher Magazine",
+                    text=words,
+                     small_image_url="https://s3-us-west-1.amazonaws.com/thrasherskill/thrasher-logo.png")
 
 
 @ask.intent("NoIntent")
 def end_session():
     message = "Ok, check back later"
     return statement(message) \
-      .simple_card(title='Thrasher Magazine',
+      .simple_card(title="Thrasher Magazine",
                      content="OK, check back later")
 
 
 the_info = get_info()
-# pic = get_image()
 follow_up = "Would you like to hear what else is playing?"
-
 
 
 if __name__ == "__main__":

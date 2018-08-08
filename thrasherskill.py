@@ -45,7 +45,10 @@ def get_info():
         yield f"{title}. {description}"
 
 # Still trying to work out adding a standard card that returns the image
-# associated with the info
+# associated with the info. Currently the Thrasher Logo is used in place of
+# the correct thumbnail. The code below pulls images from Thrasher but the
+# image has to be hosted somewhere that fills Amazons requirements. Using
+# AWS S3 to store the Logo for now.
 
 # def get_image():
 #     for images in titles:
@@ -53,7 +56,7 @@ def get_info():
 #         yield image
 
 
-def iterate():
+def next_video():
     return next(the_info)
 
 
@@ -68,7 +71,7 @@ def launch():
 
 @ask.intent("YesIntent")
 def play_next():
-    words = f"{iterate()} \r\n {follow_up}"
+    words = f"{iterate()} \r\n {follow_up}
     return question(words) \
       .standard_card(title="Thrasher Magazine",
                     text=words,

@@ -71,7 +71,7 @@ def launch():
 
 @ask.intent("YesIntent")
 def play_next():
-    words = f"{iterate()} \r\n {follow_up}
+    words = f"{next_video()} \r\n {follow_up}
     return question(words) \
       .standard_card(title="Thrasher Magazine",
                     text=words,

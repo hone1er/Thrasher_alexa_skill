@@ -8,10 +8,7 @@ Thrasher Magazine's website is parsed for infomation about the recent video
 
 To-do
 ----
-1. Script needs to restart after the session with the Amazon device ends or when
-a new session is started.
-
-2. Images need to be added to the "YesIntent" response .standardcard for the
+Images need to be added to the "YesIntent" response .standardcard for the
 echo spot, dot, and Alexa app on phones and tablets to display the image that
 matches the current title and description"""
 
@@ -22,7 +19,7 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import html.parser as parser
 from flask import Flask
-from flask_ask import Ask, statement, question
+from flask_ask import Ask, statement, question, session
 
 app = Flask(__name__)
 ask = Ask(app, "/")
@@ -59,6 +56,10 @@ def get_info():
 def next_video():
     return next(the_info)
 
+def restart():
+    global the_info
+    the_info = get_info()
+    return ""
 
 @ask.launch
 def launch():
@@ -68,7 +69,6 @@ def launch():
                     text=textd,
                      small_image_url="https://s3-us-west-1.amazonaws.com/thrasherskill/thrasher-logo.png")
 
-
 @ask.intent("YesIntent")
 def play_next():
     words = f"{next_video()} \r\n {follow_up}
@@ -77,14 +77,12 @@ def play_next():
                     text=words,
                      small_image_url="https://s3-us-west-1.amazonaws.com/thrasherskill/thrasher-logo.png")
 
-
 @ask.intent("NoIntent")
 def end_session():
-    message = "Ok, check back later"
+    message = f"Ok, check back later{restart()}"
     return statement(message) \
       .simple_card(title="Thrasher Magazine",
                      content="OK, check back later")
-
 
 the_info = get_info()
 follow_up = "Would you like to hear what else is playing?"

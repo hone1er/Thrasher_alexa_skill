@@ -32,7 +32,7 @@ uClient.close()
 page_soup = soup(page_html, "html.parser")
 descriptions = page_soup.findAll("div", {"class":"post-description"})
 titles = page_soup.findAll("div", {"class":"post-thumb-container"})
-
+img_url = "https://s3-us-west-1.amazonaws.com/thrasherskill/thrasher-logo.png"
 
 def get_info():
     for tit, des in zip(titles, descriptions):
@@ -67,7 +67,7 @@ def launch():
     return question(textd) \
       .standard_card(title="Thrasher Magazine",
                     text=textd,
-                     small_image_url="https://s3-us-west-1.amazonaws.com/thrasherskill/thrasher-logo.png")
+                     small_image_url=img_url)
 
 @ask.intent("YesIntent")
 def play_next():
@@ -75,14 +75,16 @@ def play_next():
     return question(words) \
       .standard_card(title="Thrasher Magazine",
                     text=words,
-                     small_image_url="https://s3-us-west-1.amazonaws.com/thrasherskill/thrasher-logo.png")
+                     small_image_url=img_url)
 
 @ask.intent("NoIntent")
 def end_session():
-    message = f"Ok, check back later{restart()}"
+    restart()
+    message = "Ok, check back later"
     return statement(message) \
-      .simple_card(title="Thrasher Magazine",
-                     content="OK, check back later")
+      .standard_card(title="Thrasher Magazine",
+                     text="Ok, check back later",
+                      small_image_url=img_url)
 
 the_info = get_info()
 follow_up = "Would you like to hear what else is playing?"

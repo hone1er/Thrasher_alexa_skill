@@ -2,17 +2,8 @@
 """Thrasher Magazine Alexa skill
 
 Thrasher Magazine's website is parsed for infomation about the recent video
- uploads. The code is activated by an Amazon Echo, Dot, or Spot. For testing
- purposes you will need to have someway to connect to developer.amazon.com such
- as ngrok.
-
-To-do
-----
-Images need to be added to the "YesIntent" response .standardcard for the
-echo spot, dot, and Alexa app on phones and tablets to display the image that
-matches the current title and description"""
-
-
+uploads. The code is activated with voice commands via an Amazon Echo, Dot,
+or Spot."""
 
 from urllib.request import Request as Req
 from urllib.request import urlopen as uReq
@@ -41,18 +32,6 @@ def get_info():
         description = des.text.strip()
         yield f"{title}. {description}"
 
-# Still trying to work out adding a standard card that returns the image
-# associated with the info. Currently the Thrasher Logo is used in place of
-# the correct thumbnail. The code below pulls images from Thrasher but the
-# image has to be hosted somewhere that fills Amazons requirements. Using
-# AWS S3 to store the Logo for now.
-
-# def get_image():
-#     for images in titles:
-#         image = "".join(["www.thrashermagazine.com" + images.a.img["src"]])
-#         yield image
-
-
 def next_video():
     return next(the_info)
 
@@ -63,10 +42,10 @@ def restart():
 
 @ask.launch
 def launch():
-    textd="Would you like to hear what videos are playing on thrasher magazine?"
-    return question(textd) \
+    words = f"The newest video on Thrasher Magazine is {next_video()} \r\n {follow_up}"
+    return question(words) \
       .standard_card(title="Thrasher Magazine",
-                    text=textd,
+                    text=words,
                      small_image_url=img_url)
 
 @ask.intent("YesIntent")
@@ -75,6 +54,22 @@ def play_next():
     return question(words) \
       .standard_card(title="Thrasher Magazine",
                     text=words,
+                     small_image_url=img_url)
+
+@ask.intent("AMAZON.StopIntent")
+def stop():
+    restart()
+    return statement("Goodbye") \
+      .standard_card(title="Thrasher Magazine",
+                    text=("Goodbye"),
+                     small_image_url=img_url)
+
+@ask.intent("AMAZON.CancelIntent")
+def cancel():
+    restart()
+    return statement("Goodbye") \
+      .standard_card(title="Thrasher Magazine",
+                    text=("Goodbye"),
                      small_image_url=img_url)
 
 @ask.intent("NoIntent")

@@ -38,7 +38,6 @@ def next_video():
 def restart():
     global the_info
     the_info = get_info()
-    return ""
 
 @ask.launch
 def launch():
@@ -49,6 +48,14 @@ def launch():
                      small_image_url=img_url)
 
 @ask.intent("YesIntent")
+def play_next():
+    words = f"{next_video()} \r\n {follow_up}"
+    return question(words) \
+      .standard_card(title="Thrasher Magazine",
+                    text=words,
+                     small_image_url=img_url)
+
+@ask.intent("AMAZON.FallbackIntent")
 def play_next():
     words = f"{next_video()} \r\n {follow_up}"
     return question(words) \

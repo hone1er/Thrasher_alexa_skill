@@ -56,7 +56,7 @@ def play_next():
                      small_image_url=img_url)
 
 @ask.intent("AMAZON.FallbackIntent")
-def play_next():
+def play():
     words = f"{next_video()} \r\n {follow_up}"
     return question(words) \
       .standard_card(title="Thrasher Magazine",

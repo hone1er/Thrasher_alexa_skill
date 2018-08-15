@@ -41,6 +41,7 @@ def restart():
 
 @ask.launch
 def launch():
+    restart()
     words = f"The newest video on Thrasher Magazine is {next_video()} \r\n {follow_up}"
     return question(words) \
       .standard_card(title="Thrasher Magazine",
@@ -66,27 +67,17 @@ def play():
 @ask.intent("AMAZON.StopIntent")
 def stop():
     restart()
-    return statement("Goodbye") \
-      .standard_card(title="Thrasher Magazine",
-                    text=("Goodbye"),
-                     small_image_url=img_url)
+    return statement("Ok, goodbye")
 
 @ask.intent("AMAZON.CancelIntent")
 def cancel():
     restart()
-    return statement("Goodbye") \
-      .standard_card(title="Thrasher Magazine",
-                    text=("Goodbye"),
-                     small_image_url=img_url)
+    return statement("Ok, goodbye")
 
 @ask.intent("NoIntent")
 def end_session():
     restart()
-    message = "Ok, check back later"
-    return statement(message) \
-      .standard_card(title="Thrasher Magazine",
-                     text="Ok, check back later",
-                      small_image_url=img_url)
+    return statement("Ok, check back later")
 
 the_info = get_info()
 follow_up = "Would you like to hear what else is playing?"

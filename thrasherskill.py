@@ -82,6 +82,5 @@ def end_session():
 the_info = get_info()
 follow_up = "Would you like to hear what else is playing?"
 
-
 if __name__ == "__main__":
     app.run(debug=True)

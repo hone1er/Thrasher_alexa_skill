@@ -58,11 +58,7 @@ def play_next():
 
 @ask.intent("AMAZON.FallbackIntent")
 def play():
-    words = f"{next_video()} \r\n {follow_up}"
-    return question(words) \
-      .standard_card(title="Thrasher Magazine",
-                    text=words,
-                     small_image_url=img_url)
+    play_next()
 
 @ask.intent("AMAZON.StopIntent")
 def stop():

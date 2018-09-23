@@ -19,7 +19,4 @@ https://flask-ask.readthedocs.io/en/latest/
 Info on developing an Alexa Skill found here:
 https://developer.amazon.com/alexa-skills-kit
 
-Feel free to modify the code to work with any website or help work out the problems listed
-in the To-Do list. Or add to the To-Do list if you find issues or any features you think would be cool.
-
 """

@@ -5,6 +5,7 @@ Thrasher Magazine's website is parsed for infomation about the recent video
 uploads. The code is activated with voice commands via an Amazon Echo, Dot,
 or Spot."""
 
+import os
 from urllib.request import Request as Req
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
@@ -83,4 +84,8 @@ the_info = get_info()
 follow_up = "Would you like to hear what else is playing?"
 
 if __name__ == "__main__":
-    app.run(debug=True)
+      if 'ASK_VERIFY_REQUESTS' in os.environ:
+        verify = str(os.environ.get('ASK_VERIFY_REQUESTS', '')).lower()
+        if verify == 'false':
+            app.config['ASK_VERIFY_REQUESTS'] = False
+      app.run(debug=True)

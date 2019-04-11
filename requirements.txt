@@ -1,5 +1,3 @@
 Request
-BeautifulSoup
-html.parser
 flask
 flask_ask

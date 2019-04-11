@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.6
 """Thrasher Magazine Alexa skill
 
 Thrasher Magazine's website is parsed for infomation about the recent video
@@ -84,8 +84,4 @@ the_info = get_info()
 follow_up = "Would you like to hear what else is playing?"
 
 if __name__ == "__main__":
-      if 'ASK_VERIFY_REQUESTS' in os.environ:
-        verify = str(os.environ.get('ASK_VERIFY_REQUESTS', '')).lower()
-        if verify == 'false':
-            app.config['ASK_VERIFY_REQUESTS'] = False
-      app.run(debug=True)
+      app.run()

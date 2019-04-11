@@ -1,3 +1,4 @@
 Request
 flask
 flask_ask
+beautifulsoup4==4.7.1

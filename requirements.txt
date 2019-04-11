@@ -1,4 +1,3 @@
-os
 Request
 urllib.request
 BeautifulSoup

@@ -1,5 +1,4 @@
 Request
-urllib.request
 BeautifulSoup
 html.parser
 flask

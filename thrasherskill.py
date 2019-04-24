@@ -15,31 +15,40 @@ from flask_ask import Ask, statement, question, session
 
 app = Flask(__name__)
 ask = Ask(app, "/")
+# URL to Thrasher Magazine's recent videos
 my_url = Req("http://www.thrashermagazine.com/articles/videos/", headers={"User-Agent":"Mozilla/5.0"})
 # open connection, grabbing the page
 uClient = uReq(my_url)
 page_html = uClient.read()
 uClient.close()
-# html parsing
+# html parsing using beautiful soup
 page_soup = soup(page_html, "html.parser")
+# Grab all post descriptions
 descriptions = page_soup.findAll("div", {"class":"post-description"})
+# Grab all post titles
 titles = page_soup.findAll("div", {"class":"post-thumb-container"})
+# This is a link to the Thrasher logo that is displayed when viewing the alexa app or on alexa devices with a screen
 img_url = "https://s3-us-west-1.amazonaws.com/thrasherskill/thrasher-logo.png"
 
+
 def get_info():
+# This is a generator that takes titles and descriptions, reformats the html and yields the title and description of the latest videos for Alexa to respond with
     for tit, des in zip(titles, descriptions):
         titled = tit.a.img["alt"].strip()
         title = parser.HTMLParser().unescape(titled)
         description = des.text.strip()
         yield f"{title}. {description}"
 
+# Returns the next videos information
 def next_video():
     return next(the_info)
 
+# Restarts the generator object
 def restart():
     global the_info
     the_info = get_info()
 
+# Below is the diffent responses the Alexa will provide depending on the ask.intent
 @ask.launch
 def launch():
     restart()

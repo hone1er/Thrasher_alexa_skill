@@ -1,1 +1,1 @@
-web: gunicorn app:thrasherskill
+web: gunicorn app:app

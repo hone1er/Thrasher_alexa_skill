@@ -1,25 +1,47 @@
-"""
-Thrasher Magazine Alexa skill
+# Thrasher Magazine - Alexa Skill
 
-Thrasher Magazine's website is parsed for infomation about the most recent video
+ Thrasher Magazine's website is parsed for infomation about the most recent video
  uploads. The information on the latest video is then returned through an Amazon Alexa enabled device. 
  
- The code is activated by an Amazon Echo, Dot, or Spot. You will need an amazon
- developer account to do any testing. Project is not currently deployed.
+ The code is activated by an Amazon Echo, Dot, or Spot.
+
+## Getting Started
+
+The skill is still in review. A link to the skill will be posted below if/when it is approved
+
+### Installing
+
+```
+link here
+```
+
+### Using the skill
+#### Invocation
+Users say a skill's invocation name to begin an interaction with a particular custom skill.
+This skills invocation name is: Skateboard Bible
+
+#### Sample Utterences
+```
+User: Alexa, ask Skateboard Bible what's new 
+User: Alexa, ask Skateboard Bible what's playing on Thrasher
+User: Alexa, ask Skateboard Bible to check whats on
+User: Alexa, tell Skateboard Bible to check recent uploads
+```
 
 
- ----------------------------------------------------------------------------
-This skill is currently under review to be deployed.
+## Deployment
 
------------------------------------------------------------------------------
+Deployed using Zappa and AWS lambda
+
+## Built With
+
+* [Flask_ask](https://flask-ask.readthedocs.io/en/latest/) - The framework used
+* [zappa](https://www.zappa.io/) - Used to deploy app
 
 
-Info on using Flask-ask can be found here:
-https://flask-ask.readthedocs.io/en/latest/
 
-Info on developing an Alexa Skill found here:
-https://developer.amazon.com/alexa-skills-kit
 
-This was a personal project that allow me to explore and learn more about Flask-ask,
-AWS, web scraping, and generators.
-"""
+## Authors
+
+* **Joseph Villavicencio** - *Initial work* - [hone1er](https://github.com/hone1er)
+

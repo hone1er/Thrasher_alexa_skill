@@ -36,6 +36,7 @@ Deployed using Zappa and AWS lambda
 ## Built With
 
 * [Flask_ask](https://flask-ask.readthedocs.io/en/latest/) - The framework used
+* [Beautiful_Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) - Library used to scrape the website
 * [zappa](https://www.zappa.io/) - Used to deploy app
 
 

@@ -12,7 +12,8 @@ The skill is still in review. A link to the skill will be posted below if/when i
 ### Installing
 
 ```
-link here
+* [Alexa Skills](https://www.amazon.com/alexa-skills/b?ie=UTF8&node=13727921011) - Amazon Alexa skills
+
 ```
 
 ### Using the skill

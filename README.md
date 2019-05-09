@@ -7,11 +7,11 @@
 
 ## Getting Started
 
-The skill is still in review. A link to the skill will be posted below if/when it is approved
+The skill is live and available for download at the link below
 
 ### Installing
 
-* [Alexa Skills](https://www.amazon.com/alexa-skills/b?ie=UTF8&node=13727921011) - Amazon Alexa skills
+* [Thrasher Video](https://www.amazon.com/dp/B07RLBPR8F/ref=sr_1_1?keywords=thrasher&qid=1557416841&s=digital-skills&sr=1-1-catcorr) - Thrasher Magazine Alexa Skill
 
 
 ### Using the skill

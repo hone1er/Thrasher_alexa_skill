@@ -13,6 +13,8 @@ The skill is live and available for download at the link below
 
 * [Thrasher Video](https://www.amazon.com/dp/B07RLBPR8F/ref=sr_1_1?keywords=thrasher&qid=1557416841&s=digital-skills&sr=1-1-catcorr) - Thrasher Magazine Alexa Skill
 
+Follow the link above and click "Enable Skill"
+
 
 ### Using the skill
 #### Invocation

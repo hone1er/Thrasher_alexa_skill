@@ -1,5 +1,8 @@
 # Thrasher Magazine - Alexa Skill
 
+<img src="icon_108_A2Z.png">
+
+
  Thrasher Magazine's website is parsed for infomation about the most recent video
  uploads. The information on the latest video is then returned through an Amazon Alexa enabled device. 
  

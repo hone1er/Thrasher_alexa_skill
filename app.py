@@ -1,9 +1,11 @@
 #!/usr/bin/env python3.6
-"""Thrasher Magazine Alexa skill
+"""
+Thrasher Magazine Alexa skill
 
 Thrasher Magazine's website is parsed for infomation about the recent video
 uploads. The code is activated with voice commands via an Amazon Echo, Dot,
-or Spot."""
+or Spot.
+"""
 
 import os
 from urllib.request import Request as Req
@@ -32,15 +34,22 @@ img_url = "https://s3-us-west-1.amazonaws.com/thrasherskill/thrasher-logo.png"
 
 
 def get_info():
-# This is a generator that takes titles and descriptions, reformats the html and yields the title and description of the latest videos for Alexa to respond with
+'''
+This is a generator that takes titles and descriptions,
+reformats the html and yields the title and description
+of the latest videos for Alexa to respond with
+'''
     for tit, des in zip(titles, descriptions):
         titled = tit.a.img["alt"].strip()
         title = parser.HTMLParser().unescape(titled)
         description = des.text.strip()
         yield f"{title}. {description}"
 
-# Returns the next videos information
+
 def next_video():
+    ''' 
+    move to the next title and description returned via the generator "get_info()"
+    '''
     return next(the_info)
 
 # Restarts the generator object

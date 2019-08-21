@@ -50,3 +50,4 @@ Deployed using Zappa and AWS lambda
 
 * **Joseph Villavicencio** - *Initial work* - [hone1er](https://github.com/hone1er)
 
+- MIT LICENSE -

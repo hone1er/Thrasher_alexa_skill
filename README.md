@@ -52,4 +52,4 @@ Deployed using Zappa and AWS lambda
 
 ## License
 
-- MIT LICENSE -
+MIT License

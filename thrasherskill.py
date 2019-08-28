@@ -88,4 +88,4 @@ if __name__ == "__main__":
         verify = str(os.environ.get('ASK_VERIFY_REQUESTS', '')).lower()
         if verify == 'false':
             app.config['ASK_VERIFY_REQUESTS'] = False
-      app.run(debug=True)
+      app.run(debug=False)

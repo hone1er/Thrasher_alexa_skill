@@ -1,6 +1,6 @@
 urllib3==1.26.5
 gunicorn==19.9.0
-Flask==1.0
+Flask==2.3.2
 Flask-Cors==3.0.9
 flask_ask
 beautifulsoup4==4.7.1

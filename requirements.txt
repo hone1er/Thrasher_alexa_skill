@@ -4,4 +4,4 @@ Flask==1.0
 Flask-Cors==3.0.9
 flask_ask
 beautifulsoup4==4.7.1
-requests==2.21.0
+requests==2.31.0
